@@ -1434,7 +1434,7 @@ typedef struct {
   This structure stores output information for one variable.
   *******************************************************/
 typedef struct {
-  char		varname[20]; /* name of variable */
+  char		varname[21]; /* name of variable */
   int		write;       /* FALSE = don't write; TRUE = write */
   char		format[10];  /* format, when written to an ascii file;
 		                should match the desired fprintf format specifier, e.g. %.4f */
