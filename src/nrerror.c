@@ -12,5 +12,5 @@ void nrerror(char error_text[])
 	fprintf(stderr,"Model run-time error...\n");
 	fprintf(stderr,"%s\n",error_text);
 	fprintf(stderr,"...now exiting to system...\n");
-	_exit(1);
+	_exit();
 }
