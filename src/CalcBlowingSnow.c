@@ -53,14 +53,10 @@ static char vcid[] = "$Id$";
 #define FETCH 1               /* Include fetch dependence (1). */
 #define CALC_PROB 1             /* Variable (1) or constant (0) probability of occurence. */
 
-typedef double (*integrand_func)(
-    double z, double es, double Wind, double AirDens,
-    double ZO, double EactAir, double F,
-    double hsalt, double phi_r, double ushear, double Zrh);
-
-double qromb(integrand_func funcd, double es, double Wind, double AirDens, double ZO, 
-	     double EactAir, double F, double hsalt, double phi_r, double ushear, double Zrh, 
-	     double a, double b);
+double qromb(double (*funcd)(double, double, double, double, double, double, double, double, double, double, double),
+             double es, double Wind, double AirDens, double ZO,
+             double EactAir, double F, double hsalt, double phi_r, double ushear, double Zrh,
+             double a, double b);
 double (*funcd)(double z,double es,  double Wind, double AirDens, double ZO,          
 			  double EactAir,double F, double hsalt, double phi_r,         
 			  double ushear, double Zrh);
@@ -334,14 +330,17 @@ double CalcBlowingSnow( double Dt,
   
 }
 
-double qromb(double (*funcd)(), double es, double Wind, double AirDens, double ZO, 
+double qromb(double (*funcd)(double, double, double, double, double, double, double, double, double, double, double),
+             double es, double Wind, double AirDens, double ZO,
 	     double EactAir, double F, double hsalt, double phi_r, double ushear, double Zrh, 
 	     double a, double b)
      // Returns the integral of the function func from a to b.  Integration is performed 
      // by Romberg's method:  Numerical Recipes in C Section 4.3
 {
   void polint(double xa[], double ya[], int n, double x, double *y, double *dy);
-  double trapzd(integrand_func funcd, double es, double Wind, double AirDens, 
+
+	double trapzd(double (*funcd)(double, double, double, double, double, double, double, double, double, double, double),
+              double es, double Wind, double AirDens, 
 		double ZO, double EactAir, double F, double hsalt, double phi_r, 
 		double ushear, double Zrh, double a, double b, int n);
 
@@ -402,8 +401,8 @@ void polint(double xa[], double ya[], int n, double x, double *y, double *dy)
 }
 
 
-
-double trapzd(double (*funcd)(), double es, double Wind, double AirDens, double ZO, 
+double trapzd(double (*funcd)(double, double, double, double, double, double, double, double, double, double, double),
+              double es, double Wind, double AirDens, double ZO, 
 	      double EactAir, double F, double hsalt, double phi_r, double ushear, 
 	      double Zrh, double a, double b, int n)
 {
