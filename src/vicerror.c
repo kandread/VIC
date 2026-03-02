@@ -34,5 +34,5 @@ void vicerror(char error_text[])
 	fprintf(stderr,"...now exiting to system...\n");
         fflush(stdout);
         fflush(stderr);
-	_exit(1);
+	_exit();
 }
