@@ -37,7 +37,7 @@ filenames_struct cmd_proc(int argc, char *argv[])
   
   GLOBAL_SET = FALSE;
 
-  while((optchar = getopt(argc, argv, optstring)) != EOF) {
+  while((optchar = getopt(argc, argv, "g:vo")) != EOF) {
     switch((char)optchar) {
     case 'v':
       /** Version information **/
