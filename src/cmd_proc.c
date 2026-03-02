@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <vicNl.h>
+#include <unistd.h>
 
 static char vcid[] = "$Id$";
 
@@ -23,9 +24,7 @@ filenames_struct cmd_proc(int argc, char *argv[])
 **********************************************************************/
 {
   extern option_struct options;
-  extern int getopt();
-  extern char *optarg;
-  extern char *optstring;
+ 
 
   filenames_struct names;
   int              optchar;
